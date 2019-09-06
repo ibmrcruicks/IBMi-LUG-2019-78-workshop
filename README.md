@@ -1,6 +1,6 @@
 # Large User Group, Fall 2019
 
-|**Consume Watson AI services on IBMi with Node-RED**
+**Consume AI services on IBM i with Node-RED**
 
 A short workshop to demonstrate how you might integrate a Watson Assistant skill with web-, mobile- or messenger-based user self-service IT support functions.
 
@@ -36,6 +36,15 @@ If you enable the "Plus" trial on your Watson Assistant service, you can add in 
 ## Emotional tone
 
 Sometimes, users can get frustrated or agitated while engaged with a chatbot; in some cases, knowing when this is happening can be helpful in adjusting continuing interactions, including redirecting to helpdesk staff.  The [Watson Tone Analyzer](https://www.ibm.com/watson/services/tone-analyzer/) can help by detecting emotional mix in the way users express themselves, and providing indicators to the chatbot application. There's a Node-RED node for that! 
+
+## Voice
+
+And speaking of tone of voice, how about enabling speech capability on your chatbot?
+Adding in [Speech to Text](https://www.ibm.com/watson/services/speech-to-text/) and [Text to Speech](https://www.ibm.com/watson/services/text-to-speech/) is as simple as adding nodes to your Node-RED application.
+
+## something else?
+Not finding what you like in the IBM catalog? You can find complementary services anywhere else on the internet -- services for integrating voice devices (like Siri, Alexa, Google assistant, for example) usually have a  community-developed package for Node-RED.
+
 
 # other resources
 
