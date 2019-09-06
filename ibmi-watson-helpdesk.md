@@ -3,8 +3,8 @@
 
 ## Deploy a chatbot prototype that can understand and automatically solve password-related issues on IBM i
 
-+ Ross Cruickshank June 06, 2019
-+ Christophe Lalevée January 18, 2018
++ Ross Cruickshank, Summer, 2019
++ Christophe Lalevée, January 18, 2018
 + (First published December 20, 2017)
 
 Chatbots are conversational robots that simulate conversation, and can interact with users in natural language. By harnessing both the power of the IBM Cloud Watson services, and the power and open-ness of IBM i, you can open up your chatbot to countless creative applications (such as a virtual agent) that can understand and automatically solve password-related issues.
@@ -51,12 +51,12 @@ To implement this IT help desk chatbot on IBM i, core components must be deploye
 The main components are:
 
 1. IBM Watson Assistant service providing natural language capabilities: recognition of intents and entities, and dialog management.
-1. Your chatbot broker program, implemented with Node-RED on your IBM i system. It is the core of the solution, linking all the components:
+2. Your chatbot broker program, implemented with Node-RED on your IBM i system. It is the core of the solution, linking all the components:
   + Watson Assistant service
   + user interface
   + IBM i system and database
-1. IBM i system and the IBM Db2 database for retrieving and updating IBM i user profile (*USRPRF*) attributes
-1. IBM i Services for interrogating with work management and library services
+3. IBM i system and the IBM Db2 database for retrieving and updating IBM i user profile (*USRPRF*) attributes
+4. IBM i Services for interrogating with work management and library services
 
 In this prototype, the Node-RED program can directly query databases or run programs. But, in a multi-system configuration, this component must be independent and deployed on all systems. Then data and services are available through web services [Representational State Transfer (REST) APIs](https://en.wikipedia.org/wiki/Representational_state_transfer).
 
@@ -182,13 +182,11 @@ By default, Node-RED doesn't install nodes for Watson software development kit (
 
 There are two ways to do that: Using the shell command line or the Node-RED UI.
 
-
 **Install node-red-contrib-db2-for-i and node-red-node-watson packages**  
 + The `node-red-contrib-db2-for-i` package provides a node enabling read and write to a local Db2 for i database from Node-RED on IBM i.
 + The `node-red-node-watson` package provides a collection of nodes for IBM Watson services. Of course, it includes Watson Assistant node, which is the service supporting your chatbot dialog.
 
-Using node package manager (NPM), you can install Node-RED packages globally (thus making it available for all Node-RED users) or locally (making it available for a specific user
-environment only).
+Using node package manager (NPM), you can install Node-RED packages globally (thus making it available for all Node-RED users) or locally (making it available for a specific user environment only).
 As these packages can be useful for every project, you should perform a global installation using
 the npm shell command.
 Start a shell session. It can be Qshell or remote Secure Shell (SSH). 
@@ -230,7 +228,7 @@ In the palette, you can see the Db2 for i node and the IBM Watson category.
 
 
 <details>
-  <summary>**Install Twilio package**</summary>
+  <summary>Optionally, install Twilio package</summary>
 
 Next, let us install the Twilio node. The node-red-node-twilio package provides a Node-RED node to send SMS messages using the Twilio service. Install it through the palette manager:
 1. Click the menu icon at the upper-right corner and click `Manage Palette`.
@@ -241,7 +239,7 @@ In the list that appears, search for `node-red-node-twilio` and click `Install`.
 1. Wait for the installation confirmation message.
 ![install confirm](img/nodered-install-confirm.png)
 
-Now, in the nodes list on the left, in the Mobile category, one Twilio node is now available.
+Now, in the nodes list on the left, in the Mobile category, a Twilio node is now available.
 
 ![twilio node](img/nodered-node-twilio.png)
 </details>
@@ -294,13 +292,12 @@ You must now configure nodes corresponding to cloud external services previously
 
 1. Watson Assistant  
 Double-click the IBMi-chat node, and enter the
-password and workspace ID (captured in the ["Watson Assistant: Understanding a
-conversation"](#waov) section of this article.
+API Key and workspace ID (captured in the ["Watson Assistant: Understanding a conversation"](#waov) section of this article). Click `Done`.
 1. Db2 for i 
 The Db2 for i nodes are configured to use the \*LOCAL connection to the IBM i database. By default, the User profile used to launch Node-RED will be used for Db2 authorizations.
 In real world environments, for security reasons, you will probably have to reconfigure the Db2 for i nodes to declare the credentials of a specific user profile to be used for Db connections.
 <details>
-  1. <summary>Twilio</summary> 
+1. <summary>Twilio</summary> 
 To configure a Twilio node, double-click it, and select the External service value for the Service field.Then, click the Edit button to add a new Twilio API (twilio-api).
 Enter the required values in the Account SID, From, Token and Name fields.
 You should have captured those values in the "Twilio" section of this article.
