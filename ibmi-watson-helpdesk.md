@@ -1,5 +1,5 @@
 
-# Build an enhanced IT helpdesk chatbot on IBM i with Watson services
+# Build an IT helpdesk chatbot on IBM i with Watson services
 
 ## Deploy a chatbot prototype that can understand and automatically solve password-related issues on IBM i
 
@@ -7,8 +7,7 @@
 + Christophe Lalevée January 18, 2018
 + (First published December 20, 2017)
 
-
-Chatbots are conversational robots that simulate conversation, and can interact with users in natural language. By harnessing both the power of the IBM Cloud Watson services, and the power and openness of IBM i, you can open up your chatbot to countless creative applications (such as a virtual agent) that can understand and automatically solve password-related issues.
+Chatbots are conversational robots that simulate conversation, and can interact with users in natural language. By harnessing both the power of the IBM Cloud Watson services, and the power and open-ness of IBM i, you can open up your chatbot to countless creative applications (such as a virtual agent) that can understand and automatically solve password-related issues.
 
 This workshop guides you through implementing a prototype of such a chatbot running on IBM i that links the IBM Watson Assistant service and IBM i system services.
 
@@ -16,7 +15,8 @@ This workshop guides you through implementing a prototype of such a chatbot runn
 
 ## Introduction
 
-Did you know that as per recent studies, an average of 20% to 50% of all help desk calls are password related?
+According to the Gartner Group, between 20% to 50% of all help desk calls are for password resets. Forrester Research states that the average help desk labor cost for a single password reset is about $70.
+
 Mundane tasks can be a headache for help desk teams, especially when higher priority jobs need attention. 
 Virtual assistants (also known as _chatbots_ ) for IT help desk can automatically process tickets that do not need deep expertise such as managing access credentials and password-related issues, allowing your staff to focus on critical issues and value-added tasks. For instance, a chatbot can analyse the root cause and automatically solve password-related issues.
 
@@ -229,7 +229,8 @@ In the palette, you can see the Db2 for i node and the IBM Watson category.
 ![watson nodes](img/nodered-node-watson.png)
 
 
-2. **Install Twilio package**
+<details>
+  <summary>**Install Twilio package**</summary>
 
 Next, let us install the Twilio node. The node-red-node-twilio package provides a Node-RED node to send SMS messages using the Twilio service. Install it through the palette manager:
 1. Click the menu icon at the upper-right corner and click `Manage Palette`.
@@ -243,6 +244,7 @@ In the list that appears, search for `node-red-node-twilio` and click `Install`.
 Now, in the nodes list on the left, in the Mobile category, one Twilio node is now available.
 
 ![twilio node](img/nodered-node-twilio.png)
+</details>
 
 ### Import flow and configure nodes
 
@@ -256,7 +258,6 @@ To get the code, download the [Node-Red chatbot flow](ibmi-password-flow.json) f
 **Import the code.**
 Go back to the IBM i Node-RED editor in your browser, click the menu at the upper-right corner
 and click **Import -> Clipboard**. Then, paste the contents of the clipboard. Click **New flow** , and then click **Import**.
-
 
 Click anywhere on the blank sheet to paste nodes.
 
@@ -298,7 +299,8 @@ conversation"](#waov) section of this article.
 1. Db2 for i 
 The Db2 for i nodes are configured to use the \*LOCAL connection to the IBM i database. By default, the User profile used to launch Node-RED will be used for Db2 authorizations.
 In real world environments, for security reasons, you will probably have to reconfigure the Db2 for i nodes to declare the credentials of a specific user profile to be used for Db connections.
-1. Twilio  
+<details>
+  1. <summary>Twilio</summary> 
 To configure a Twilio node, double-click it, and select the External service value for the Service field.Then, click the Edit button to add a new Twilio API (twilio-api).
 Enter the required values in the Account SID, From, Token and Name fields.
 You should have captured those values in the "Twilio" section of this article.
@@ -308,7 +310,7 @@ enterprise user directory, for instance, Lightweight Directory Access Protocol (
 Directory Server).
 Initialize the `msg.topic` variable with the phone number to which you want to send messages.
 Remember to replace xxxxxx with this phone number in the code.
-
+</details>
 
 **Deploy the code.**  
 Click **Deploy** to deploy and make your application live.
